@@ -1,0 +1,34 @@
+{
+    "XRPUSDT": {
+        "base_order_qty"                  : 26,
+        "take_profit_distance_percentage" : 1.0,
+        "win_distance_percentage"         : 5.0,
+        "martingale_factor"               : 2.0,
+        "take_profits_before_martingale"  : 5,
+        "trailing_distance"               : 2.0
+    },
+    "XMRUSDT": {
+        "base_order_qty"                  : 0.080,
+        "take_profit_distance_percentage" : 1.0,
+        "win_distance_percentage"         : 5.0,
+        "martingale_factor"               : 2.0,
+        "take_profits_before_martingale"  : 5,
+        "trailing_distance"               : 2.0
+    },
+    "ADAUSDT": {
+        "base_order_qty"                  : 32,
+        "take_profit_distance_percentage" : 1.0,
+        "win_distance_percentage"         : 5.0,
+        "martingale_factor"               : 2.0,
+        "take_profits_before_martingale"  : 5,
+        "trailing_distance"               : 2.0
+    },
+    "RNDRUSDT": {
+        "base_order_qty"                  : 1.6,
+        "take_profit_distance_percentage" : 1.0,
+        "win_distance_percentage"         : 5.0,
+        "martingale_factor"               : 2.0,
+        "take_profits_before_martingale"  : 5,
+        "trailing_distance"               : 2.0
+    }
+}

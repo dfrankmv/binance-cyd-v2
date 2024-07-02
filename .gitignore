@@ -1,0 +1,10 @@
+keys.py
+venv-*
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+.vscode/launch.json
+config.ini

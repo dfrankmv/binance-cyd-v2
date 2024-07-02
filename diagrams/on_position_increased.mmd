@@ -1,0 +1,38 @@
+sequenceDiagram
+
+title ON POSITION INCREASED
+
+participant BIN as Binance
+participant FIN as Finandy
+participant STG as Strategy
+participant OLS as Order Listener
+
+BIN ->>+ OLS: Send 'order'
+OLS ->>  BIN: Ask 'position[ order.pair ]'
+BIN ->>  OLS: Send 'position[ order.pair ]'
+OLS ->>  OLS: Set 'type'
+OLS ->>- STG: Send {'type', 'order', 'position[ order.pair ]'}
+alt 
+    Note over STG: type == "INCREASE_ORDER_FILLED"
+    alt
+        Note over STG: this.pair == order.pair
+        STG ->> BIN: Post tp_order[ this.pair ][ order.dir ]
+        STG ->> FIN: Post reverse_trailing_order[ this.pair ][ ! order.dir ]
+        STG ->> STG: Update 'breakeven[ order.dir ]'
+    else
+        Note over STG: this.pair != order.pair <br> and <br> position[ order.pair ][ order.dir ] == 2*order.qty 
+        STG ->> BIN: Ask 'position[ this.pair ]'
+        BIN ->> STG: Send 'position[ this.pair ]'
+        STG ->> STG: Update 'breakeven[ order.dir ]'
+        alt
+            Note over STG: position[ this.pair ][ order.dir ].qty == 0
+            STG ->> BIN: Ask 'pending_orders[ this.pair ]'
+            BIN ->> STG: Send 'pending_orders[ this.pair ]'
+            alt
+                Note over STG: len( pending_orders[ this.pair ][ order.dir ] ) > 0
+                STG ->> BIN: Cancel pending_orders[ this.pair ][ order.dir ]
+                STG ->> FIN: Post reverse_trailing_order[ this.pair ][ order.dir ]
+            end
+        end
+    end 
+end

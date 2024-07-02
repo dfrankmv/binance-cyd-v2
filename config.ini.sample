@@ -1,0 +1,8 @@
+[binance]
+api_key = xxx
+secret_key = yyy
+
+[finandy]
+url = https://hook.finandy.com/fff
+name = ABC
+secret = xxx

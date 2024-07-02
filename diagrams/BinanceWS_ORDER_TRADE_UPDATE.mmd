@@ -1,0 +1,14 @@
+sequenceDiagram
+
+title ON "ORDER_TRADE_UPDATE"
+
+participant BIN as Binance
+participant BWS as BinanceWd
+participant FAP as FinandyAPI
+participant TRD as Trader
+
+BIN ->> BWS: send "order" filled
+activate BWS
+BWS ->> BAP: get_position_info( order.pair, order.dir )
+BAP ->> BWS: send 'position'
+deactivate BWS
